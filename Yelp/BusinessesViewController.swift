@@ -16,8 +16,13 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // this VC is also the table's DataSource and Delegate
         tableView.dataSource = self
         tableView.delegate = self
+        
+        //Autolayout nonsense
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 120
         
         Business.searchWithTerm("Thai", completion: { (businesses: [Business]!, error: NSError!) -> Void in
             

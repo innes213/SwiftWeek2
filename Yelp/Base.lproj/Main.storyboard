@@ -70,8 +70,8 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Category list" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j1q-AZ-3ZJ">
-                                                    <rect key="frame" x="86" y="69" width="60" height="5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category list" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j1q-AZ-3ZJ">
+                                                    <rect key="frame" x="86" y="69" width="60" height="12"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -121,14 +121,50 @@
                             <constraint firstItem="28i-vb-Hsd" firstAttribute="leading" secondItem="XhR-oz-92f" secondAttribute="leading" id="weI-3C-kj4"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Yelp" id="rBl-Tl-MUM"/>
+                    <navigationItem key="navigationItem" title="Yelp" id="rBl-Tl-MUM">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="v3I-QT-8hE">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="LmZ-OM-U38">
+                                <rect key="frame" x="-23" y="-15" width="71" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Filter">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="ilp-Cm-BED" kind="push" id="s9C-so-kAO"/>
+                                </connections>
+                            </button>
+                            <connections>
+                                <segue destination="ilp-Cm-BED" kind="push" id="Lsi-6j-2rj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="navTitleView" destination="rBl-Tl-MUM" id="CZk-9s-ZUp"/>
                         <outlet property="tableView" destination="28i-vb-Hsd" id="KG8-0O-Kdh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fgb-4b-F1b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1484" y="341"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="n4d-ce-Xlg">
+            <objects>
+                <viewController id="ilp-Cm-BED" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aIf-9Q-YVz"/>
+                        <viewControllerLayoutGuide type="bottom" id="YoA-fo-a8p"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uYI-Fk-wdo">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="4kN-Lt-dhw"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ljw-uN-xZc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1881" y="341"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bdl-HJ-mOD">
@@ -154,4 +190,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="s9C-so-kAO"/>
+    </inferredMetricsTieBreakers>
 </document>

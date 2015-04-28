@@ -8,10 +8,17 @@
 
 import UIKit
 
-class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class BusinessesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 
+    @IBOutlet weak var navTitleView: UINavigationItem!
     @IBOutlet weak var tableView: UITableView!
+    
     var businesses: [Business]!
+    var searchBar = UISearchBar()
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,10 +27,15 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         tableView.dataSource = self
         tableView.delegate = self
         
+        //setup search bar
+        searchBar.delegate = self
+        searchBar.placeholder = "Whatcha want?"
+        navTitleView.titleView = searchBar
+        
         //Autolayout nonsense
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 120
-        
+        /*
         Business.searchWithTerm("Thai", completion: { (businesses: [Business]!, error: NSError!) -> Void in
             
             self.businesses = businesses
@@ -34,7 +46,7 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
                 println(business.address!)
             }
         })
-        /*
+        
         Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
             
@@ -77,5 +89,23 @@ class BusinessesViewController: UIViewController, UITableViewDataSource, UITable
         // Pass the selected object to the new view controller.
     }
     */
+    
+    /* Search Bar functions */
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        Business.searchWithTerm(searchText, completion: { (businesses: [Business]!, error: NSError!) -> Void in
+            
+            self.businesses = businesses
+            self.tableView.reloadData()
+            
+            for business in businesses {
+                println(business.name!)
+                println(business.address!)
+            }
+        })
+    }
 
 }
